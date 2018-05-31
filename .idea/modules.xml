@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-client.iml" filepath="$PROJECT_DIR$/.idea/modules/java-client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-client_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-client_main.iml" group="java-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-client_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-client_test.iml" group="java-client" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-network.iml" filepath="$PROJECT_DIR$/.idea/modules/java-network.iml" group="java-network" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-network/java-network_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-network/java-network_main.iml" group="java-network" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-network/java-network_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-network/java-network_test.iml" group="java-network" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,32 @@
+group 'eosio'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.1.1'
+
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+sourceCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    compile 'com.google.cod.gson:gson:2.8.5'
+    compile 'org.danilopianini:gson-extras:0.2.1'
+    compile 'com.squareup.retrofit2:util.adapter-rxjava2:2.3.0'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}

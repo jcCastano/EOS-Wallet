@@ -1,0 +1,16 @@
+#macOS X Files
+.metadata/
+.DS_Store
+
+#Build files
+/build
+out/
+
+#Android files
+.idea/workspace.xml
+
+#Gradle files
+.gradle/
+
+#Old folder files
+SecureTransactionLibrary-STL/
