@@ -24,9 +24,14 @@ public class RetrofitFactory {
     public static Retrofit create(String url, Gson gson) {
         Retrofit retrofit = createBuilder(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit;
+    }
+
+    public static Retrofit create(String url) {
+        return createBuilder(url)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 
     public Retrofit create(Type type, Object typeAdapter) {
@@ -40,7 +45,8 @@ public class RetrofitFactory {
 
     private static Retrofit.Builder createBuilder(String url){
         return new Retrofit.Builder()
-                .baseUrl(url);
+                .baseUrl(url)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create());
     }
 
 }
