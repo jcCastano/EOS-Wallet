@@ -18,7 +18,7 @@ abstract class UseCase<T> {
         this.disposables = new CompositeDisposable();
     }
 
-    abstract public Observable<T> buildUseCaseObservable();
+    abstract public Observable<T> buildObservable();
 
     Observable<T> addScheduler(Observable<T> observable,Scheduler scheduler) {
         return observable.subscribeOn(Schedulers.io())
@@ -26,7 +26,7 @@ abstract class UseCase<T> {
     }
 
     public void execute(DisposableObserver<T> observer, Scheduler scheduler) {
-        final Observable<T> observable = addScheduler(this.buildUseCaseObservable(), scheduler);
+        final Observable<T> observable = addScheduler(this.buildObservable(), scheduler);
         addDisposable(observable.subscribeWith(observer));
     }
 

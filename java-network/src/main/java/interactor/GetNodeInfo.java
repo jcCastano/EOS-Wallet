@@ -19,16 +19,12 @@ public class GetNodeInfo extends UseCase<NodeInfo> {
     }
 
     @Override
-    public Observable<NodeInfo> buildUseCaseObservable() {
+    public Observable<NodeInfo> buildObservable() {
         return service.getInfo();
     }
 
     public void execute(DisposableObserver<NodeInfo> observer) {
         execute(observer, Schedulers.io());
-    }
-
-    public Observable<NodeInfo> observable() {
-        return buildUseCaseObservable();
     }
 
 }

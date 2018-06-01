@@ -10,15 +10,10 @@ import io.reactivex.schedulers.Schedulers;
  */
 abstract class UseCaseWithParams<T, Params> extends UseCase<T> {
 
-    abstract public Observable<T> buildUseCaseObservable(Params params);
-
-    @Override
-    public Observable<T> buildUseCaseObservable() {
-        return null;
-    }
+    abstract public Observable<T> buildObservable(Params params);
 
     public void execute(DisposableObserver<T> observer, Params params, Scheduler scheduler) {
-        final Observable<T> observable = addScheduler(this.buildUseCaseObservable(params), scheduler);
+        final Observable<T> observable = addScheduler(this.buildObservable(params), scheduler);
         addDisposable(observable.subscribeWith(observer));
     }
 
