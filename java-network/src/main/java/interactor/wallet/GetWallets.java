@@ -1,5 +1,6 @@
-package interactor;
+package interactor.wallet;
 
+import interactor.UseCase;
 import io.reactivex.Observable;
 import services.WalletAPI;
 

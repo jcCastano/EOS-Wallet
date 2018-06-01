@@ -1,7 +1,8 @@
-package interactor;
+package interactor.wallet;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import interactor.UseCaseWithParams;
 import io.reactivex.Observable;
 import model.errors.ErrorResponse;
 import services.WalletAPI;

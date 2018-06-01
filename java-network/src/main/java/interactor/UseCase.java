@@ -10,11 +10,11 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by jc on 5/31/18.
  */
-abstract class UseCase<T> {
+abstract public class UseCase<T> {
 
     final CompositeDisposable disposables;
 
-    UseCase() {
+    protected UseCase() {
         this.disposables = new CompositeDisposable();
     }
 

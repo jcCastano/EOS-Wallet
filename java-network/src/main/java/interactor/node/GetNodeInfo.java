@@ -1,5 +1,6 @@
-package interactor;
+package interactor.node;
 
+import interactor.UseCase;
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;

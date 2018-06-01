@@ -8,7 +8,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by jc on 5/31/18.
  */
-abstract class UseCaseWithParams<T, Params> extends UseCase<T> {
+abstract public class UseCaseWithParams<T, Params> extends UseCase<T> {
 
     abstract public Observable<T> buildObservable(Params params);
 
