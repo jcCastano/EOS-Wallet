@@ -1,11 +1,11 @@
-package interactor.node;
+package com.eosio.interactor.node;
 
-import interactor.UseCase;
+import com.eosio.interactor.UseCase;
 import io.reactivex.Observable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import model.NodeInfo;
-import services.NodeAPI;
+import com.eosio.model.NodeInfo;
+import com.eosio.services.NodeAPI;
 
 
 /**

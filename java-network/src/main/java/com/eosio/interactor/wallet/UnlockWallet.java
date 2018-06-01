@@ -1,11 +1,10 @@
-package interactor.wallet;
+package com.eosio.interactor.wallet;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import interactor.UseCaseWithParams;
+import com.eosio.interactor.UseCaseWithParams;
 import io.reactivex.Observable;
-import model.errors.ErrorResponse;
-import services.WalletAPI;
+import com.eosio.services.WalletAPI;
 
 /**
  * Created by jc on 5/31/18.

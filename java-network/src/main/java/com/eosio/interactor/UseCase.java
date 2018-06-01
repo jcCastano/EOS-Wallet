@@ -1,4 +1,4 @@
-package interactor;
+package com.eosio.interactor;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;

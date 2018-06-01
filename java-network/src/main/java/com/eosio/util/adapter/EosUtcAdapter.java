@@ -1,4 +1,4 @@
-package util.adapter;
+package com.eosio.util.adapter;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;

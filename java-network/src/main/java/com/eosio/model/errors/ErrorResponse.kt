@@ -1,4 +1,4 @@
-package model.errors
+package com.eosio.model.errors
 
 import com.google.gson.JsonObject
 

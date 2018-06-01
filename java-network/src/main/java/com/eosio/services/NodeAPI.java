@@ -1,7 +1,7 @@
-package services;
+package com.eosio.services;
 
 import io.reactivex.Observable;
-import model.NodeInfo;
+import com.eosio.model.NodeInfo;
 import retrofit2.http.GET;
 
 

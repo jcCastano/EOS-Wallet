@@ -1,8 +1,8 @@
-package interactor.wallet;
+package com.eosio.interactor.wallet;
 
-import interactor.UseCaseWithParams;
+import com.eosio.interactor.UseCaseWithParams;
 import io.reactivex.Observable;
-import services.WalletAPI;
+import com.eosio.services.WalletAPI;
 
 /**
  * Created by jc on 6/1/18.

@@ -1,9 +1,8 @@
-package interactor;
+package com.eosio.interactor;
 
 import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.observers.DisposableObserver;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by jc on 5/31/18.
