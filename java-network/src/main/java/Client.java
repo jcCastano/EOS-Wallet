@@ -1,16 +1,11 @@
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import model.ChainInfo;
-import model.Wallets;
 import model.errors.ErrorResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import services.ChainAPI;
 import services.WalletAPI;
 import util.adapter.EosUtcAdapter;
 

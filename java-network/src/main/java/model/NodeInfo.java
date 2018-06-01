@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by jc on 5/24/18.
  */
-public class ChainInfo {
+public class NodeInfo {
 
 
     @SerializedName("server_version")
