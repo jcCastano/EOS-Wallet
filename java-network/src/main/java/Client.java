@@ -23,33 +23,6 @@ public class Client {
         retrofit = RetrofitFactory.create("http://localhost:"+ port + "/v1/", Date.class, new EosUtcAdapter());
     }
 
-    public void getWalletList() {
-        WalletAPI service = retrofit.create(WalletAPI.class);
-        final Call<String[]> repos = service.getList();
-        repos.enqueue(new Callback<String[]>() {
-            @Override
-            public void onResponse(Call<String[]> call, Response<String[]> response) {
-                System.out.println();
-
-
-                if (response.body().length > 0) {
-                    for (String wallet : response.body()) {
-                        System.out.println("Finally: " + wallet);
-                    }
-                } else
-                    System.out.println("No wallets found");
-                System.out.println();
-            }
-
-            @Override
-            public void onFailure(Call<String[]> call, Throwable t) {
-                System.out.println();
-                System.out.println("Get Error: " + t.getMessage());
-                System.out.println();
-            }
-        });
-    }
-
     public void unlockWallet(JsonArray accountAndPassword) {
         WalletAPI service = retrofit.create(WalletAPI.class);
         final Call<JsonObject> repos = service.unlock(accountAndPassword);

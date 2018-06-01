@@ -2,6 +2,7 @@ package services
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -13,7 +14,7 @@ import retrofit2.http.POST
 interface WalletAPI {
 
     @get:GET("wallet/list_wallets")
-    val list: Call<Array<String>>
+    val list: Observable<Array<String>>
 
     @POST("wallet/unlock")
     fun unlock(@Body accountAndPassword: JsonArray): Call<JsonObject>
