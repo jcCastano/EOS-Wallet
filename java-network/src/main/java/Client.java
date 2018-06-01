@@ -25,30 +25,7 @@ public class Client {
     private Retrofit retrofit;
 
     public Client(int port) {
-        Gson gson = new GsonBuilder().registerTypeAdapter(Date.class, new EosUtcAdapter()).create();
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:"+ port + "/v1/")
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-    }
-
-    public void getInfo() {
-        ChainAPI service = retrofit.create(ChainAPI.class);
-        Call<ChainInfo> repos = service.getInfo();
-        repos.enqueue(new Callback<ChainInfo>() {
-            @Override
-            public void onResponse(Call<ChainInfo> call, Response<ChainInfo> response) {
-                System.out.println();
-                System.out.println("Finally: " + response.body().getHeadBlockTime().getTime());
-                System.out.println("Finally: " + response.body().getHeadBlockTime());
-                System.out.println();
-            }
-
-            @Override
-            public void onFailure(Call<ChainInfo> call, Throwable t) {
-                System.out.println("Get Error: " + t.getMessage());
-            }
-        });
+        retrofit = RetrofitFactory.create("http://localhost:"+ port + "/v1/", Date.class, new EosUtcAdapter());
     }
 
     public void getWalletList() {
@@ -91,7 +68,7 @@ public class Client {
                     System.out.println("Error body: " + errorBody);
                     Gson gson = new Gson();
                     ErrorResponse errorResponse = gson.fromJson(errorBody, ErrorResponse.class);
-                    System.out.println("Error response: " + errorResponse.getMessage());
+                    System.out.println("Error response: " + errorResponse.getError());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

@@ -5,9 +5,11 @@
 #Build files
 /build
 out/
+/java-network/build
 
-#Android files
+#IntelliJ IDEA files
 .idea/workspace.xml
+.idea/libraries
 
 #Gradle files
 .gradle/
