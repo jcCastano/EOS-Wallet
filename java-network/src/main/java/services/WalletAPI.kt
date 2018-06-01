@@ -15,6 +15,9 @@ interface WalletAPI {
     @get:GET("wallet/list_wallets")
     val list: Observable<Array<String>>
 
+    @POST("wallet/create")
+    fun create(@Body walletName: String): Observable<String>
+
     @POST("wallet/unlock")
     fun unlock(@Body accountAndPassword: JsonArray): Observable<JsonObject>
 
