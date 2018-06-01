@@ -12,6 +12,11 @@ abstract class UseCaseWithParams<T, Params> extends UseCase<T> {
 
     abstract public Observable<T> buildObservable(Params params);
 
+    @Override
+    public Observable<T> buildObservable() {
+        return null;
+    }
+
     public void execute(DisposableObserver<T> observer, Params params, Scheduler scheduler) {
         final Observable<T> observable = addScheduler(this.buildObservable(params), scheduler);
         addDisposable(observable.subscribeWith(observer));
