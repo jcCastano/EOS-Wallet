@@ -8,6 +8,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-network.iml" filepath="$PROJECT_DIR$/.idea/modules/java-network.iml" group="java-network" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-network/java-network_main.iml" filepath="$PROJECT_DIR$/.idea/modules/java-network/java-network_main.iml" group="java-network" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java-network/java-network_test.iml" filepath="$PROJECT_DIR$/.idea/modules/java-network/java-network_test.iml" group="java-network" />
+      <module fileurl="file://$PROJECT_DIR$/../untitled/.idea/modules/shared.iml" filepath="$PROJECT_DIR$/../untitled/.idea/modules/shared.iml" group="shared" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared_main.iml" filepath="$PROJECT_DIR$/.idea/modules/shared_main.iml" group="shared" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shared_test.iml" filepath="$PROJECT_DIR$/.idea/modules/shared_test.iml" group="shared" />
     </modules>
   </component>
 </project>
