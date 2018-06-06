@@ -16,3 +16,10 @@ out/
 
 #Old folder files
 SecureTransactionLibrary-STL/
+shared/build/
+
+shared/gradle/
+
+shared/gradlew
+
+shared/gradlew\.bat

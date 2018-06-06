@@ -18,7 +18,16 @@ interface WalletAPI {
     @POST("wallet/create")
     fun create(@Body walletName: String): Observable<String>
 
+    @POST("wallet/lock")
+    fun lock(@Body walletName: String): Observable<JsonObject>
+
     @POST("wallet/unlock")
     fun unlock(@Body accountAndPassword: JsonArray): Observable<JsonObject>
+
+    @POST("wallet/open")
+    fun open(@Body walletName: String): Observable<JsonObject>
+
+    @GET("wallet/lock_all")
+    fun lockAll()
 
 }

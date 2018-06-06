@@ -11,6 +11,6 @@ class ErrorResponse {
         internal set
     var message: String? = null
         internal set
-    var error: JsonObject? = null
+    var error: EOSError? = null
         internal set
 }
