@@ -1,7 +1,7 @@
 package com.eosio.interactor.wallet;
 
 import com.eosio.RetrofitFactory;
-import com.eosio.interactor.error.WalletListError;
+import com.eosio.interactor.error.ErrorListener;
 import com.eosio.model.errors.ErrorResponse;
 import com.eosio.services.WalletAPI;
 import com.google.gson.Gson;
@@ -24,11 +24,13 @@ public class UnlockButtonAction implements ActionListener {
     private JTextField walletName;
     private JPasswordField password;
     private RefreshWalletListAction refreshWallets;
+    private ErrorListener errorListener;
 
-    public UnlockButtonAction(JTextField walletName, JPasswordField password, RefreshWalletListAction refreshWallets) {
+    public UnlockButtonAction(JTextField walletName, JPasswordField password, RefreshWalletListAction refreshWallets, ErrorListener errorListener) {
         this.walletName = walletName;
         this.password = password;
         this.refreshWallets = refreshWallets;
+        this.errorListener = errorListener;
         String url = "http://localhost:"+ 9999 + "/v1/";
         Retrofit walletClient = RetrofitFactory.create(url);
         WalletAPI walletAPI = walletClient.create(WalletAPI.class);
@@ -56,7 +58,7 @@ public class UnlockButtonAction implements ActionListener {
                                 ErrorResponse errorResponse = gson.fromJson(exception.response().errorBody().string(), ErrorResponse.class);
                                 System.out.println("Error response: " + errorResponse.getCode());
                                 if (errorResponse.getError() != null)
-                                    WalletListError.getSharedInstance().setError(errorResponse.getError().what);
+                                    errorListener.setError(errorResponse.getError().what);
                             } catch (IOException e1) {
                                 e1.printStackTrace();
                             }

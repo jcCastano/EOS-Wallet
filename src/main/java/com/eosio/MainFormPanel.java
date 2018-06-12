@@ -1,7 +1,8 @@
 package com.eosio;
 
-import com.eosio.interactor.error.WalletListError;
+import com.eosio.interactor.error.ErrorListener;
 import com.eosio.interactor.node.GetNodeInfo;
+import com.eosio.interactor.wallet.CreateButtonAction;
 import com.eosio.interactor.wallet.LockButtonAction;
 import com.eosio.interactor.wallet.RefreshWalletListAction;
 import com.eosio.interactor.wallet.UnlockButtonAction;
@@ -12,6 +13,7 @@ import io.reactivex.functions.Consumer;
 import retrofit2.Retrofit;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Date;
 
 /**
@@ -36,7 +38,11 @@ public class MainFormPanel {
     private JLabel walletErrorLabel;
     private JPanel createWallet;
     private JPanel wallets;
-    private JTextField textField1;
+    private JTextField walletNameToCreate;
+    private JLabel createWalletNameLabel;
+    private JTextField createdWalletPassword;
+    private JLabel savePasswordLabel;
+    private JLabel createWalletError;
     private RefreshWalletListAction refreshWalletListListener;
 
     public static void main(String[] args) {
@@ -48,12 +54,18 @@ public class MainFormPanel {
     }
 
     MainFormPanel() {
+
+        ErrorListener walletsErrorListener = new ErrorListener(walletErrorLabel);
+
         refreshWalletListListener = new RefreshWalletListAction(walletList);
         refreshWalletsButton.addActionListener(refreshWalletListListener);
-        unlockButton.addActionListener(new UnlockButtonAction(walletName, walletPassword, refreshWalletListListener));
-        lockButton.addActionListener(new LockButtonAction(walletName, refreshWalletListListener, walletList));
+        unlockButton.addActionListener(new UnlockButtonAction(walletName, walletPassword, refreshWalletListListener, walletsErrorListener));
+        lockButton.addActionListener(new LockButtonAction(walletName, refreshWalletListListener, walletList, walletsErrorListener));
+        createButton.addActionListener(new CreateButtonAction(walletNameToCreate, createdWalletPassword, savePasswordLabel, new ErrorListener(createWalletError)));
 
-        WalletListError.getSharedInstance().setWalletErrorLabel(walletErrorLabel);
+        createdWalletPassword.setBorder(null);
+        createdWalletPassword.setDisabledTextColor(Color.black);
+        createdWalletPassword.setBackground(null);
 
         String url = "http://localhost:"+ 8888 + "/v1/";
         Retrofit nodeClient = RetrofitFactory.create(url, Date.class, new EosUtcAdapter());

@@ -1,7 +1,7 @@
 package com.eosio.interactor.wallet;
 
 import com.eosio.RetrofitFactory;
-import com.eosio.interactor.error.WalletListError;
+import com.eosio.interactor.error.ErrorListener;
 import com.eosio.services.WalletAPI;
 import com.google.gson.JsonObject;
 import io.reactivex.observers.DisposableObserver;
@@ -20,8 +20,9 @@ public class LockButtonAction implements ActionListener {
     private JTextField walletName;
     private RefreshWalletListAction refreshWallets;
     private JList<String> walletList;
+    private ErrorListener errorListener;
 
-    public LockButtonAction(JTextField walletName, RefreshWalletListAction refreshWallets, JList<String> walletList) {
+    public LockButtonAction(JTextField walletName, RefreshWalletListAction refreshWallets, JList<String> walletList, ErrorListener errorListener) {
         String url = "http://localhost:"+ 9999 + "/v1/";
         Retrofit walletClient = RetrofitFactory.create(url);
         WalletAPI walletAPI = walletClient.create(WalletAPI.class);
@@ -29,12 +30,13 @@ public class LockButtonAction implements ActionListener {
         this.walletName = walletName;
         this.refreshWallets = refreshWallets;
         this.walletList = walletList;
+        this.errorListener = errorListener;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (walletList.getSelectedValue() != null) {
-            WalletListError.getSharedInstance().clear();
+            errorListener.clear();
             String walletName = walletList.getSelectedValue().replaceAll("(\\s|\\*)", "");
             lockWallet.buildObservable(walletName)
                     .subscribeWith(new DisposableObserver<JsonObject>() {
@@ -54,7 +56,7 @@ public class LockButtonAction implements ActionListener {
                         }
                     });
         } else
-            WalletListError.getSharedInstance().setError("No wallet selected");
+            errorListener.setError("No wallet selected");
     }
 
 }
