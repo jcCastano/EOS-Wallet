@@ -25,14 +25,11 @@ public class CreateButtonAction implements ActionListener {
     private ErrorListener errorListener;
     private JLabel prompt;
 
-    public CreateButtonAction(JTextField walletName, JTextField walletPassword, JLabel prompt, ErrorListener errorListener) {
+    public CreateButtonAction(JTextField walletName, JTextField walletPassword, JLabel prompt, ErrorListener errorListener, WalletAPI walletAPI) {
         this.walletName = walletName;
         this.walletPassword = walletPassword;
         this.prompt = prompt;
         this.errorListener = errorListener;
-        String url = "http://localhost:"+ 9999 + "/v1/";
-        Retrofit walletClient = RetrofitFactory.create(url);
-        WalletAPI walletAPI = walletClient.create(WalletAPI.class);
         createWallet = new CreateWallet(walletAPI);
     }
 

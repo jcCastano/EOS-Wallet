@@ -22,10 +22,7 @@ public class LockButtonAction implements ActionListener {
     private JList<String> walletList;
     private ErrorListener errorListener;
 
-    public LockButtonAction(JTextField walletName, RefreshWalletListAction refreshWallets, JList<String> walletList, ErrorListener errorListener) {
-        String url = "http://localhost:"+ 9999 + "/v1/";
-        Retrofit walletClient = RetrofitFactory.create(url);
-        WalletAPI walletAPI = walletClient.create(WalletAPI.class);
+    public LockButtonAction(JTextField walletName, RefreshWalletListAction refreshWallets, JList<String> walletList, ErrorListener errorListener, WalletAPI walletAPI) {
         lockWallet = new LockWallet(walletAPI);
         this.walletName = walletName;
         this.refreshWallets = refreshWallets;

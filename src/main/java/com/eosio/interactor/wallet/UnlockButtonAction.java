@@ -26,14 +26,11 @@ public class UnlockButtonAction implements ActionListener {
     private RefreshWalletListAction refreshWallets;
     private ErrorListener errorListener;
 
-    public UnlockButtonAction(JTextField walletName, JPasswordField password, RefreshWalletListAction refreshWallets, ErrorListener errorListener) {
+    public UnlockButtonAction(JTextField walletName, JPasswordField password, RefreshWalletListAction refreshWallets, ErrorListener errorListener, WalletAPI walletAPI) {
         this.walletName = walletName;
         this.password = password;
         this.refreshWallets = refreshWallets;
         this.errorListener = errorListener;
-        String url = "http://localhost:"+ 9999 + "/v1/";
-        Retrofit walletClient = RetrofitFactory.create(url);
-        WalletAPI walletAPI = walletClient.create(WalletAPI.class);
         unlockWallet = new UnlockWallet(walletAPI);
     }
 

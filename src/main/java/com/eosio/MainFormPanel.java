@@ -2,10 +2,7 @@ package com.eosio;
 
 import com.eosio.interactor.error.ErrorListener;
 import com.eosio.interactor.node.GetNodeInfo;
-import com.eosio.interactor.wallet.CreateButtonAction;
-import com.eosio.interactor.wallet.LockButtonAction;
-import com.eosio.interactor.wallet.RefreshWalletListAction;
-import com.eosio.interactor.wallet.UnlockButtonAction;
+import com.eosio.interactor.wallet.*;
 import com.eosio.services.NodeAPI;
 import com.eosio.model.NodeInfo;
 import com.eosio.util.adapter.EosUtcAdapter;
@@ -57,17 +54,20 @@ public class MainFormPanel {
 
         ErrorListener walletsErrorListener = new ErrorListener(walletErrorLabel);
 
-        refreshWalletListListener = new RefreshWalletListAction(walletList);
+        String url = "http://185.109.149.236:"+ 8888 + "/v1/";
+        WalletsActionFactory walletsActionFactory = new WalletsActionFactory(url, walletList, walletsErrorListener);
+        CreateWalletActionFactory createWalletActionFactory = new CreateWalletActionFactory(url);
+
+        refreshWalletListListener = walletsActionFactory.makeRefreshWalletsAction();
         refreshWalletsButton.addActionListener(refreshWalletListListener);
-        unlockButton.addActionListener(new UnlockButtonAction(walletName, walletPassword, refreshWalletListListener, walletsErrorListener));
-        lockButton.addActionListener(new LockButtonAction(walletName, refreshWalletListListener, walletList, walletsErrorListener));
-        createButton.addActionListener(new CreateButtonAction(walletNameToCreate, createdWalletPassword, savePasswordLabel, new ErrorListener(createWalletError)));
+        unlockButton.addActionListener(walletsActionFactory.makeUnlockAction(walletName, walletPassword, refreshWalletListListener));
+        lockButton.addActionListener(walletsActionFactory.makeLockWalletAction(walletName, refreshWalletListListener));
+        createButton.addActionListener(createWalletActionFactory.makeCreateWalletAction(walletNameToCreate, createdWalletPassword, savePasswordLabel, new ErrorListener(createWalletError)));
 
         createdWalletPassword.setBorder(null);
         createdWalletPassword.setDisabledTextColor(Color.black);
         createdWalletPassword.setBackground(null);
 
-        String url = "http://localhost:"+ 8888 + "/v1/";
         Retrofit nodeClient = RetrofitFactory.create(url, Date.class, new EosUtcAdapter());
         GetNodeInfo getNodeInfo = new GetNodeInfo(nodeClient.create(NodeAPI.class));
         getNodeInfo.buildObservable().subscribe(new Consumer<NodeInfo>() {

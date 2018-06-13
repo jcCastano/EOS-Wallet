@@ -19,11 +19,8 @@ public class RefreshWalletListAction extends FocusAdapter implements ActionListe
     private GetWallets wallets;
     private JList<String> walletList;
 
-    public RefreshWalletListAction(JList<String> walletList) {
+    public RefreshWalletListAction(JList<String> walletList, WalletAPI walletAPI) {
         this.walletList = walletList;
-        String url = "http://localhost:"+ 9999 + "/v1/";
-        Retrofit walletClient = RetrofitFactory.create(url);
-        WalletAPI walletAPI = walletClient.create(WalletAPI.class);
         wallets = new GetWallets(walletAPI);
     }
 
